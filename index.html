@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="font/iconfont.css">
+    <link rel="stylesheet" href="libs/swiper-3.3.1.min.css">
+    <script src="libs/swiper-3.3.1.min.js"></script>
+    <script>
+        document.documentElement.style.fontSize = window.innerWidth/375*50+"px";
+    </script>
+</head>
+<body>
+    <div class="box">
+        <header class="header">
+            <a href="javascript:;">
+                <img src="images/1_03.gif" alt="">
+            </a>
+            <a href="javascript:;">
+                <span class="iconfont">&#xe729;</span>
+            </a>
+            <a href="javascript:;">
+                <span class="iconfont">&#xe6f9;</span>
+            </a>
+        </div>
+        <section class="section">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="images/银行_02.gif" alt=""></div>
+                    <div class="swiper-slide"><img src="images/银行_02.gif" alt=""></div>
+                    <div class="swiper-slide"><img src="images/银行_02.gif" alt=""></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <div class="nav">
+                <dl>
+                    <dt><img src="images/1_07.gif" alt=""></dt>
+                    <dd>全国--刷农行银联白银卡，6分积分...  <span>2017-11-03</span></dd>
+                </dl>
+            </div>
+            <div class="nav">
+                <dl>
+                    <dt><img src="images/1_07.gif" alt=""></dt>
+                    <dd>全国--刷农行银联白银卡，6分积分...  <span>2017-11-03</span></dd>
+                </dl>
+            </div>
+            <div class="p">
+                便捷服务    
+            </div>
+            <div class="main">
+                <!-- <dl>
+                    <dt><span class="iconfont">&#xe72b;</span></dt>
+                    <dd>美食</dd> 
+                </dl>
+                <dl>
+                    <dt><span class="iconfont">&#xe72b;</span></dt>
+                    <dd>美食</dd> 
+                </dl>
+                <dl>
+                    <dt><span class="iconfont">&#xe72b;</span></dt>
+                    <dd>美食</dd> 
+                </dl>
+                <dl>
+                    <dt><span class="iconfont">&#xe72b;</span></dt>
+                    <dd>美食</dd> 
+                </dl>
+                <dl>
+                    <dt><span class="iconfont">&#xe72b;</span></dt>
+                    <dd>美食</dd> 
+                </dl>
+                <dl>
+                    <dt><span class="iconfont">&#xe72b;</span></dt>
+                    <dd>美食</dd> 
+                </dl>
+                <dl>
+                    <dt><span class="iconfont">&#xe72b;</span></dt>
+                    <dd>美食</dd> 
+                </dl>
+                <dl>
+                    <dt><span class="iconfont">&#xe72b;</span></dt>
+                    <dd>美食</dd> 
+                </dl>
+                <dl> -->
+            </div>
+        </section>
+    </div>
+    <script>
+        var main = document.querySelector('.main');
+        console.log(main);
+        var swiper = new Swiper('.swiper-container',{
+            autoplay:1000,
+            loop:true,
+            pagination:'.swiper-pagination'
+        }) 
+        if(window.XMLHttpRequest){
+            var xhr = new XMLHttpRequest();
+        }else{
+            var xhr = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+        xhr.open('GET','http://localhost:8000/',true);
+        xhr.send();
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                var obj = JSON.parse(xhr.responseText);
+                console.log(obj);
+                var str ='' ;
+                obj.forEach(function(v,i){
+                    str += `
+                        <dl>
+                        <dt><img src="${v.img}" alt=""></dt>
+                        <dd>${v.name}</dd> 
+                    </dl>
+                    `;
+                })    
+                main.innerHTML += str;
+            }
+        }
+
+    </script>
+</body>
+</html>
